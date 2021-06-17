@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Set Site Name</title>
+</head>
+
+<body>
+<div>
+    <label>Admin-Set Site Name</label>
+    <a th:href="@{/adminDashboard}">Back to Dashboard</a>
+</div>
+
+<div>
+    <form th:action="@{/editSiteName}" th:object="${siteName}" method="post">
+        <div>
+            <label>Site Name</label>
+            <div>
+                <input type="text" id="shopping-site-name"
+                       th:name="name" th:field="*{name}" th:value="${siteName.name}"></br>
+                <div id="error-message"
+                     th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                </div>
+                <div id="error-message-1" th:if="${#fields.hasAnyErrors()}">
+                    <p  th:if="${#fields.hasErrors('name')}" th:errors="*{all}"></p>
+                </div>
+
+                <div id="error-message-2" th:if="${#fields.hasAnyErrors()}">
+                    <p  th:each="err : ${#fields.allErrors()}" th:text="${err}"></p>
+                </div>
+                <label>Alphanumeric & space only. Min 4 characters. Max 30 characters.</label>
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" formmethod="get" id="cancel" th:formaction="@{/adminDashboard}">Cancel</button>
+            <button type="submit" id="set-site-name">Set Site Name</button>
+
+
+            <div id="general-error-message"
+                 th:each="error2 : ${#fields.hasErrors('*')}" th:text="${error2}">
+                Unexpected error occurred
+            </div>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

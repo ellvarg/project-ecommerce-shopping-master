@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin-Edit Item</title>
+</head>
+
+<body>
+<div>
+    <label>Admin-Edit Item</label>
+    <a th:href="@{/adminDashboard}">Back to Dashboard</a>
+</div>
+
+<form th:action="@{/updateItem}" th:object="${itemEdit}" method="post">
+    <div>
+        <div>
+            <label>Category</label>
+            <input type="text" id="category" required minlength="4" maxlength="30" th:name="category" th:value="${itemEdit.getCategory.name}">
+        </div>
+        <div>
+            <label>Title</label>
+            <input type="text" id="title" required minlength="4" maxlength="30" th:name="title" th:value="${itemEdit.title}">
+        </div>
+        <div>
+            <label>SKU Id</label>
+            <label id="skuid"  th:text="${itemEdit.SKUId}"></label>
+            <input type="hidden" th:name="SKUId" th:value="${itemEdit.SKUId}"/>
+        </div>
+        <div>
+            <label>Description</label>
+            <input type="text" id="description" required minlength="4" maxlength="100" th:name="description" th:value="${itemEdit.description}">
+        </div>
+        <div>
+            <label>Price</label>
+            <input type="text" id="price" required min="1" max="100000" th:name="price" th:value="${itemEdit.price}">
+        </div>
+        <div>
+            <button type="submit" id="cancel" th:formaction="@{/adminViewItem}">Cancel</button>
+            <button type="submit" id="update">Update</button>
+
+            <div id="error-message">Please enter valid input</div>
+            <div id="general-error-message">Unexpected error occurred</div>
+        </div>
+    </div>
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Reports</title>
+</head>
+
+<body>
+<div>
+    <label>Admin-Reports</label>
+    <a th:href="@{/adminDashboard}">Back to Dashboard</a>
+</div>
+
+<table>
+    <tr>
+        <label>Order Number</label>
+        <label>Action</label>
+    </tr>
+    <tr th:each="order : ${orders}">
+        <label id="order-${order.count}" th:text="${order.orderNumber}"></label>
+        <button id="view-order-${order.count}">View Order</button>
+    </tr>
+    <div id="error-message">No records to display</div>
+    <div id="general-error-message">Unexpected error occurred</div>
+</table>
+
+</body>
+</html>

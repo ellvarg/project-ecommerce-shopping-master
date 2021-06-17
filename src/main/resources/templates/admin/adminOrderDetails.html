@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Report - Order Details</title>
+</head>
+
+<body>
+<div>
+    <label>Admin-Report-Order Details</label>
+    <a th:href="@{/adminReports}">Reports</a>
+    <a th:href="@{/adminDashboard}">Back to Dashboard</a>
+</div>
+
+<div>
+    <label>Order Number</label>
+    <label id="order-number" th:text="${order.orderNumber}"></label>
+</div>
+<div>
+    <table>
+        <tr>
+            <label>SKU Id</label>
+            <label>Item</label>
+            <label>Price</label>
+            <label>Quantity</label>
+            <label>Subtotal</label>
+        </tr>
+        <tr th:each="itemShopping : ${order.checkout.cart.itemsShopping}">
+            <label id="skuid-${itemShopping.count}" th:text="${itemShopping.item.skuid}"></label>
+            <label id="title-${itemShopping.count}" th:text="${itemShopping.item.title}"></label>
+            <label id="price-${itemShopping.count}" th:text="${itemShopping.item.price}"></label>
+            <label id="quantity-${itemShopping.count}" th:text="${itemShopping.quantity}"></label>
+            <label id="subtotal-${itemShopping.count}" th:text="${itemShopping.subTotalPrice}"></label>
+        </tr>
+    </table>
+    <label>Total</label>
+    <label id="total" th:text="${order.checkout.totalPrice}"></label>
+</div>
+
+<div>
+
+    <div style="width: 50%">
+        <label>Billing / Shipping Information</label>
+        <div>
+            <label>First Name</label>
+            <label id="first-name" th:text="${order.checkout.shippingInformation.firstName}">Peter</label>
+        </div>
+        <div>
+            <label>Last Name</label>
+            <label id="last-name" th:text="${order.checkout.shippingInformation.lastName}">Scott</label>
+        </div>
+        <div>
+            <label>Phone</label>
+            <label id="phone" th:text="${order.checkout.shippingInformation.phone}">1234567890</label>
+        </div>
+        <div>
+            <label>Email</label>
+            <label id="email" th:text="${order.checkout.shippingInformation.email}">Peter@mail.com</label>
+        </div>
+        <div>
+            <label>Address</label>
+            <label id="address" th:text="${order.checkout.shippingInformation.address}">Tower S1, Doddakannelli, Sarjapur Road Bengaluru 560 035</label>
+        </div>
+    </div>
+
+    <div  style="width: 50%">
+        <label>Payment Method</label>
+        <label>Debit/Credit Card Payment</label>
+        <div>
+            <label>Card Number</label>
+            <label id="card-number" th:text="${order.checkout.paymentMethod.cardNumber}">123456789012</label>
+        </div>
+        <div>
+            <label>Expiry Date</label>
+            <label id="expiry-date" th:text="${order.checkout.paymentMethod.expiryDate}">01/02/2019</label>
+        </div>
+        <div>
+            <label>CVV</label>
+            <label id="cvv" th:text="${order.checkout.paymentMethod.cvv}">123</label>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

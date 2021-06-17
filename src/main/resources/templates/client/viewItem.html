@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>View Item</title>
+</head>
+
+<body>
+
+<div>
+    <label th:id="shopping-site-name" th:text="${siteName.name}"></label>
+    <a th:href="@{/cart}">View Cart</a>
+    <a th:href="@{/home}">Back to Home</a>
+</div>
+
+<div>
+    <label>Item Details</label>
+</div>
+
+<div>
+    <form th:action="@{/addToCart}" method="post">
+    <div>
+        <label>Category</label>
+        <label th:id="'category'" th:text="${itemView.getCategory.name}"></label>
+<!--        <input type="hidden" th:name="item.setCategory" th:value="${itemView.getCategory.name}"/>-->
+    </div>
+    <div>
+        <label>Title</label>
+        <label th:id="'title'" th:text="${itemView.title}"></label>
+        <input type="hidden" th:name="title" th:value="${itemView.title}"/>
+    </div>
+    <div>
+        <label>SKU Id</label>
+        <label th:id="'skuid'" th:text="${itemView.SKUId}"></label>
+        <input type="hidden" th:name="SKUId" th:value="${itemView.SKUId}"/>
+    </div>
+    <div>
+        <label>Description</label>
+        <label th:id="'description'" th:text="${itemView.description}"></label>
+        <input type="hidden" th:name="description" th:value="${itemView.description}"/>
+    </div>
+    <div>
+        <label>Price</label>
+        <label th:id="'price'" th:text="${itemView.price}"></label>
+        <input type="hidden" th:name="price" th:value="${itemView.price}"/>
+    </div>
+
+    <div>
+        <label>Quantity</label>
+        <input type="text" required th:id="'quantity'" th:name="quantity"></br>
+        <label>Range: 1 to 100000</label>
+        <div id="error-message" >Please enter valid input</div>
+    </div>
+
+
+        <button type="submit" th:id="'add-to-cart'">Add to Cart</button>
+    </form>
+
+
+</div>
+</body>
+</html>
